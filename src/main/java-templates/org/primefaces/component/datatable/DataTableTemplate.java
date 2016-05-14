@@ -198,6 +198,10 @@ import javax.faces.event.BehaviorEvent;
     public boolean isRowEditRequest(FacesContext context) {
         return context.getExternalContext().getRequestParameterMap().containsKey(this.getClientId(context) + "_rowEditAction");
     }
+
+    public boolean isCellEditCancelRequest(FacesContext context) {
+        return context.getExternalContext().getRequestParameterMap().containsKey(this.getClientId(context) + "_cellEditCancel");
+    }
     
     public boolean isRowEditCancelRequest(FacesContext context) {
         Map<String,String> params = context.getExternalContext().getRequestParameterMap();
@@ -904,7 +908,10 @@ import javax.faces.event.BehaviorEvent;
                         }
                     }
                     else if(kid instanceof Column) {
-                        columnsCountWithSpan += ((Column) kid).getColspan();
+                        Column col = (Column) kid;
+                        if(col.isVisible()) {
+                            columnsCountWithSpan += col.getColspan();
+                        }
                     } 
                     else if(kid instanceof SubTable) {
                         SubTable subTable = (SubTable) kid;

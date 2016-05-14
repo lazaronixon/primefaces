@@ -1906,6 +1906,7 @@ PrimeFaces.widget.DataTable = PrimeFaces.widget.DeferredWidget.extend({
     bindEditEvents: function() {
         var $this = this;
         this.cfg.cellSeparator = this.cfg.cellSeparator||' ';
+        this.cfg.saveOnCellBlur = (this.cfg.saveOnCellBlur === false) ? false : true;
         
         if(this.cfg.editMode === 'row') {
             var rowEditorSelector = '> tr > td > div.ui-row-editor';
@@ -1943,7 +1944,10 @@ PrimeFaces.widget.DataTable = PrimeFaces.widget.DeferredWidget.extend({
             $(document).off('click.datatable-cell-blur' + this.id)
                         .on('click.datatable-cell-blur' + this.id, function(e) {                            
                             if(!$this.incellClick && $this.currentCell && !$this.contextMenuClick && !$.datepicker._datepickerShowing) {
-                                $this.saveCell($this.currentCell);
+                                if($this.cfg.saveOnCellBlur)
+                                    $this.saveCell($this.currentCell);
+                                else
+                                    $this.doCellEditCancelRequest($this.currentCell);
                             }
                             
                             $this.incellClick = false;
@@ -1995,7 +1999,10 @@ PrimeFaces.widget.DataTable = PrimeFaces.widget.DeferredWidget.extend({
         }
         
         if(this.currentCell) {
-            $this.saveCell(this.currentCell);
+            if(this.cfg.saveOnCellBlur)
+                this.saveCell(this.currentCell);
+            else
+                this.doCellEditCancelRequest(this.currentCell);
         }
         
         this.currentCell = cell;
@@ -2055,6 +2062,11 @@ PrimeFaces.widget.DataTable = PrimeFaces.widget.DeferredWidget.extend({
                             $this.tabCell(cell, !shiftKey);
                         }
                         
+                        e.preventDefault();
+                    }
+                    else if(key === keyCode.ESCAPE) {
+                        $this.doCellEditCancelRequest(cell);
+                        $this.currentCell = null;
                         e.preventDefault();
                     }
                 })
@@ -2154,6 +2166,43 @@ PrimeFaces.widget.DataTable = PrimeFaces.widget.DeferredWidget.extend({
         else {
             PrimeFaces.ajax.Request.handle(options);
         }
+    },
+    
+    doCellEditCancelRequest: function(cell) {
+        var rowMeta = this.getRowMeta(cell.closest('tr')),
+        cellEditor = cell.children('.ui-cell-editor'),
+        cellIndex = cell.index(),
+        cellInfo = rowMeta.index + ',' + cellIndex,
+        $this = this;
+
+        if(rowMeta.key) {
+            cellInfo = cellInfo + ',' + rowMeta.key;
+        }
+
+        var options = {
+            source: this.id,
+            process: this.id,
+            update: this.id,
+            params: [{name: this.id + '_encodeFeature', value: true},
+                     {name: this.id + '_cellEscape', value: true},
+                     {name: this.id + '_cellInfo', value: cellInfo}],
+            onsuccess: function(responseXML, status, xhr) {
+                PrimeFaces.ajax.Response.handle(responseXML, status, xhr, {
+                        widget: $this,
+                        handle: function(content) {
+                            cellEditor.children('.ui-cell-editor-input').html(content);
+                        }
+                    });
+
+                return true;
+            },
+            oncomplete: function(xhr, status, args) {                            
+                $this.viewMode(cell);
+                cell.data('edit-events-bound', false);
+            }
+        };
+        
+        PrimeFaces.ajax.Request.handle(options);
     },
     
     /**
@@ -2477,8 +2526,11 @@ PrimeFaces.widget.DataTable = PrimeFaces.widget.DeferredWidget.extend({
             newWidth = (columnHeader.width() + change),
             nextColumnWidth = (nextColumnHeader.width() - change);
         }
-                        
-        if((newWidth > 15 && nextColumnWidth > 15) || (expandMode && newWidth > 15)) {          
+         
+        var minWidth = parseInt(columnHeader.css('min-width'));
+        minWidth = (minWidth == 0) ? 15 : minWidth;
+        
+        if((newWidth > minWidth && nextColumnWidth > minWidth) || (expandMode && newWidth > minWidth)) {          
             if(expandMode) {
                 table.width(table.width() + change);
                 setTimeout(function() {
@@ -3439,7 +3491,9 @@ PrimeFaces.widget.FrozenDataTable = PrimeFaces.widget.DataTable.extend({
             nextColumnWidth = (nextColumnHeader.width() - change);
         }
         
-        var shouldChange = (expandMode && newWidth > 15) || (lastFrozen ? (newWidth > 15) : (newWidth > 15 && nextColumnWidth > 15)); 
+        var minWidth = parseInt(columnHeader.css('min-width'));
+        minWidth = (minWidth == 0) ? 15 : minWidth;
+        var shouldChange = (expandMode && newWidth > minWidth) || (lastFrozen ? (newWidth > minWidth) : (newWidth > minWidth && nextColumnWidth > minWidth)); 
         if(shouldChange) {
             var frozenColumn = columnHeader.hasClass('ui-frozen-column'),
             theadClone = frozenColumn ? this.frozenTheadClone : this.scrollTheadClone,
@@ -3562,4 +3616,4 @@ PrimeFaces.widget.FrozenDataTable = PrimeFaces.widget.DataTable.extend({
         }
     }
     
-});       
+});

@@ -1,11 +1,11 @@
 /* Omega Theme */
 @font-face {
     font-family: 'latoregular';
-    src: url("#{resource['primefaces-delta:fonts/lato-regular-webfont.eot']}");
-    src: url("#{resource['primefaces-delta:fonts/lato-regular-webfont.eot']}#iefix") format('embedded-opentype'),
-         url("#{resource['primefaces-delta:fonts/lato-regular-webfont.woff']}") format('woff'),
-         url("#{resource['primefaces-delta:fonts/lato-regular-webfont.ttf']}") format('truetype'),
-         url("#{resource['primefaces-delta:fonts/lato-regular-webfont.svg']}#latoregular") format('svg');
+    src: url("#{resource['primefaces-omega:fonts/lato-regular-webfont.eot']}");
+    src: url("#{resource['primefaces-omega:fonts/lato-regular-webfont.eot']}#iefix") format('embedded-opentype'),
+         url("#{resource['primefaces-omega:fonts/lato-regular-webfont.woff']}") format('woff'),
+         url("#{resource['primefaces-omega:fonts/lato-regular-webfont.ttf']}") format('truetype'),
+         url("#{resource['primefaces-omega:fonts/lato-regular-webfont.svg']}#latoregular") format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -14,7 +14,6 @@
 ----------------------------------*/
 .ui-widget { font-family: "latoregular", "Trebuchet MS", Arial, Helvetica, sans-serif; font-size: 1em; font-size: 1em; }
 .ui-widget .ui-widget { font-size: 1em; }
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Arial,Helvetica,sans-serif; font-size: 1em; }
 .ui-widget-content { border: 1px solid #D5D5D5; background: #ffffff; color: #222222; }
 .ui-widget-content a { color: #222222; }
 .ui-widget-header { border: 1px solid #D5D5D5; background: #cccccc; color: #222222; font-weight: bold; }
@@ -45,9 +44,7 @@
 ----------------------------------*/
 .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #156090; background: #186ba0; color: #FFFFFF; }
 .ui-state-highlight a, .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #363636; }
-.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec; color: #cd0a0a; }
-.ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #cd0a0a; }
-.ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text { color: #cd0a0a; }
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border-left: 2px solid #EF5350;}
 .ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary { font-weight: bold; }
 .ui-priority-secondary, .ui-widget-content .ui-priority-secondary,  .ui-widget-header .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
 .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
@@ -56,14 +53,14 @@
 ----------------------------------*/
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url("#{resource['primefaces-delta:images/ui-icons_222222_256x240.png']}"); }
-.ui-widget-content .ui-icon {background-image: url("#{resource['primefaces-delta:images/ui-icons_222222_256x240.png']}"); }
-.ui-widget-header .ui-icon {background-image: url("#{resource['primefaces-delta:images/ui-icons_222222_256x240.png']}"); }
-.ui-state-default .ui-icon { background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}"); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}"); }
-.ui-state-active .ui-icon {background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}"); }
-.ui-state-highlight .ui-icon {background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}"); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url("#{resource['primefaces-delta:images/ui-icons_cd0a0a_256x240.png']}"); }
+.ui-icon { width: 16px; height: 16px; background-image: url("#{resource['primefaces-omega:images/ui-icons_222222_256x240.png']}"); }
+.ui-widget-content .ui-icon {background-image: url("#{resource['primefaces-omega:images/ui-icons_222222_256x240.png']}"); }
+.ui-widget-header .ui-icon {background-image: url("#{resource['primefaces-omega:images/ui-icons_222222_256x240.png']}"); }
+.ui-state-default .ui-icon { background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}"); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}"); }
+.ui-state-active .ui-icon {background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}"); }
+.ui-state-highlight .ui-icon {background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}"); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url("#{resource['primefaces-omega:images/ui-icons_cd0a0a_256x240.png']}"); }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
@@ -343,7 +340,7 @@
  *
  * http://docs.jquery.com/UI/Button#theming
  */
-.ui-button .ui-icon { background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}"); }
+.ui-button .ui-icon { background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}"); }
 /*
  * jQuery UI Dialog 1.8.16
  *
@@ -372,7 +369,7 @@
  * http://docs.jquery.com/UI/Slider#theming
  */
 .ui-slider { position: relative; text-align: left; background: #838688; border: none; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset; box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset;}
-.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 17px !important; height: 21px  !important; cursor: default; background: url("#{resource['primefaces-delta:images/slider_handles.png']}") 0 0 no-repeat; outline: none; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; border: none; }
+.ui-slider .ui-slider-handle { position: absolute; z-index: 2; width: 17px !important; height: 21px  !important; cursor: default; background: url("#{resource['primefaces-omega:images/slider_handles.png']}") 0 0 no-repeat; outline: none; -webkit-border-radius: 0; -moz-border-radius: 0; border-radius: 0; border: none; }
 .ui-slider .ui-slider-range { position: absolute; z-index: 1; font-size: .7em; display: block; border: 0; background: #14a4ff; -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset; -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset; box-shadow: 0 1px 3px rgba(0,0,0,0.6) inset; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 .ui-slider .ui-slider-handle.ui-state-active { background-position: -17px 0; }
 
@@ -438,7 +435,7 @@
 .ui-datepicker select.ui-datepicker-month-year {width: 100%;}
 .ui-datepicker select.ui-datepicker-month,
 .ui-datepicker select.ui-datepicker-year { width: 49%;}
-.ui-datepicker table {width: 1px; font-size: .9em; border-collapse: collapse; margin: -1px 0 0 0 !important; }
+.ui-datepicker table {font-size: .9em; border-collapse: collapse; margin: -1px 0 0 0 !important; }
 .ui-datepicker th { padding: .7em 0; text-align: center; font-weight: bold; border: 0; font-size: 10px; color: #acacac; border-bottom: 1px solid #cdcdcd !important; }
 .ui-datepicker td { border: 0; padding: 0 !important; border: 1px solid #cdcdcd; }
 .ui-datepicker td a { display: block; padding: 0 !important; border: 0 none !important;/*border: 1px solid #cdcdcd !important;*/ line-height: 30px; text-align: center !important; font-size: 12px; text-decoration: none; font-weight: bold !important; }
@@ -464,7 +461,7 @@
 }
 
 .ui-datepicker-today a.ui-state-highlight {
-	border: 1px solid #156090 !important;
+    text-shadow: 1px 1px 1px #156090;
 }
 
 .ui-datepicker td a.ui-state-default.ui-state-hover {
@@ -486,8 +483,8 @@ td.ui-datepicker-unselectable {
 .ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
 .ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
 .ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
-.ui-datepicker .ui-icon-circle-triangle-w { background: url("#{resource['primefaces-delta:images/icons_16.png']}") 0 -128px no-repeat !important; }
-.ui-datepicker .ui-icon-circle-triangle-e { background: url("#{resource['primefaces-delta:images/icons_16.png']}") 0 -112px no-repeat !important; }
+.ui-datepicker .ui-icon-circle-triangle-w { background: url("#{resource['primefaces-omega:images/icons_16.png']}") 0 -128px no-repeat !important; }
+.ui-datepicker .ui-icon-circle-triangle-e { background: url("#{resource['primefaces-omega:images/icons_16.png']}") 0 -112px no-repeat !important; }
 .ui-datepicker-header .ui-state-hover { border: 0; background: none; }
 
 /* with multiple calendars */
@@ -552,7 +549,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 /* Checkbox and Radio */
 .ui-state-highlight .ui-chkbox-box .ui-icon, 
 .ui-state-highlight .ui-radiobutton-box .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_2e83ff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_2e83ff_256x240.png']}");
 }
 
 .ui-chkbox-box.ui-state-active,
@@ -566,7 +563,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 
 .ui-chkbox-box.ui-state-active .ui-icon,
 .ui-radiobutton-box.ui-state-active .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
 }
 
 /* TimeLine */
@@ -609,7 +606,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 }
 
 .ui-panelmenu .ui-panelmenu-header.ui-state-active .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
 }
 
 /* DataTable  */
@@ -629,7 +626,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
     color: #ffffff;
 }
 .ui-datatable th.ui-state-active .ui-icon-carat-2-n-s {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
 }
 .ui-datatable-odd {
     background-color: #fafafb;
@@ -650,7 +647,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 
 .ui-datatable .ui-selection-column .ui-radiobutton-box .ui-icon,
 .ui-datatable .ui-selection-column .ui-chkbox-box .ui-icon{
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}");
 }
 
 /* Panel */
@@ -711,7 +708,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
     color: #ffffff;
 }
 .ui-treetable th.ui-state-active .ui-icon-carat-2-n-s {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
 }
 
 .ui-treetable tbody > tr.ui-widget-content {
@@ -723,7 +720,7 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 }
 
 .ui-treetable .ui-selection .ui-chkbox-box .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}");
 }
 
 /* Inputs */
@@ -754,16 +751,16 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 }
 
 .ui-selectbooleanbutton.ui-button.ui-state-default .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}");
 }
 
 .ui-selectbooleanbutton.ui-button.ui-state-hover.ui-icon,
 .ui-selectbooleanbutton.ui-button.ui-state-focus .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_454545_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_454545_256x240.png']}");
 }
 
 .ui-selectbooleanbutton.ui-button.ui-state-active .ui-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
 }
 
 /* SelectOneMenu */
@@ -790,10 +787,46 @@ button.ui-button.ui-state-active, .ui-button.ui-state-active {
 }
 
 .ui-tabmenu li.ui-state-active .ui-menuitem-icon {
-    background-image: url("#{resource['primefaces-delta:images/ui-icons_ffffff_256x240.png']}");
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
 }
 
 /* Steps */
 .ui-steps .ui-state-highlight span {
     color: #ffffff;
+}
+
+/* Growl and Messages */
+.ui-growl-info,
+.ui-messages .ui-messages-info, 
+.ui-message.ui-message-info{
+    color: #ffffff;
+    background-color: #9CCC65;
+    border-color: #9CCC65;
+}
+
+.ui-growl-warn,
+.ui-messages .ui-messages-warn,
+.ui-message.ui-message-warn{
+    color: #ffffff;
+    background-color: #FFA726;
+    border-color: #FFA726;
+}
+
+.ui-growl-error,.ui-growl-fatal,
+.ui-messages .ui-messages-error, .ui-message.ui-message-error,
+.ui-messages .ui-messages-fatal, .ui-message.ui-message-fatal {
+    color: #ffffff;
+    background-color: #EF5350;
+    border-color: #EF5350;
+}
+
+.ui-messages .ui-icon {
+    background-image: url("#{resource['primefaces-omega:images/ui-icons_ffffff_256x240.png']}");
+}
+
+/* Shadow */
+.ui-shadow {
+    -webkit-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3) !important; 
+    -moz-box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3) !important; 
+    box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.3) !important;
 }
