@@ -13407,7 +13407,7 @@ var effectTransfer = $.effects.effect.transfer = function( o, done ) {
         return isHostObject(document, "body") ? document.body : document.getElementsByTagName("body")[0];
     }
 
-    $(document).ready(function() {
+    var documentReady = function() {
         var testTextArea = document.createElement("textarea");
 
         getBody().appendChild(testTextArea);
@@ -13579,7 +13579,14 @@ var effectTransfer = $.effects.effect.transfer = function( o, done ) {
             replaceSelectedText: jQuerify(replaceSelectedText, true),
             surroundSelectedText: jQuerify(surroundSelectedText, true)
         });
-    });
+    };
+    
+    if (typeof Turbolinks === 'undefined') {
+        $(document).ready(documentReady);
+    } else {
+        $(document).on('turbolinks:load',documentReady);
+    }
+    
 })(jQuery);
 
 /**

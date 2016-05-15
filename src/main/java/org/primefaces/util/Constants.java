@@ -39,6 +39,7 @@ public class Constants {
         public static final String BEAN_VALIDATION_DISABLED = "javax.faces.validator.DISABLE_DEFAULT_BEAN_VALIDATOR";
         public static final String INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES = "primefaces.INTERPOLATE_CLIENT_SIDE_VALIDATION_MESSAGES";
         public static final String EARLY_POST_PARAM_EVALUATION = "primefaces.EARLY_POST_PARAM_EVALUATION";
+        public static final String TURBO_LINKS = "primefaces.TURBO_LINKS";
     }
 
     public static class RequestParams {

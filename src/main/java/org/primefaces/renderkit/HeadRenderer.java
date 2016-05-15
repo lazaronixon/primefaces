@@ -81,11 +81,15 @@ public class HeadRenderer extends Renderer {
             encodeCSS(context, "primefaces", "fa/font-awesome.css");
         }
         
+        if(cc.isTurboLinks()) {
+            renderJS(context, "turbolinks/turbolinks.js", "primefaces");           
+        }           
+        
         //Middle facet
         UIComponent middle = component.getFacet("middle");
         if (middle != null) {
             middle.encodeAll(context);
-        }
+        }            
                 
         //Registered Resources
         UIViewRoot viewRoot = context.getViewRoot();
@@ -95,8 +99,8 @@ public class HeadRenderer extends Renderer {
         
         if(csvEnabled) {
             encodeValidationResources(context, cc.isBeanValidationAvailable());
-        }
-
+        }                
+        
         writer.startElement("script", null);
         writer.writeAttribute("type", "text/javascript", null);
         writer.write("if(window.PrimeFaces){");
@@ -151,7 +155,7 @@ public class HeadRenderer extends Renderer {
             writer.writeAttribute("href", cssResource.getRequestPath(), null);
             writer.endElement("link");
         }
-    }
+    }    
     
     protected void encodeValidationResources(FacesContext context, boolean beanValidationEnabled) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
@@ -175,4 +179,16 @@ public class HeadRenderer extends Renderer {
             }
         }
     }
+    
+    protected void renderJS(FacesContext context, String name, String library) throws IOException  {
+        ResponseWriter writer = context.getResponseWriter();
+        Resource resource = context.getApplication().getResourceHandler().createResource(name, library);
+
+        if(resource != null) {
+            writer.startElement("script", null);
+            writer.writeAttribute("type", "text/javascript", null);
+            writer.writeAttribute("src", resource.getRequestPath(), null);
+            writer.endElement("script");
+        }
+    }    
 }
